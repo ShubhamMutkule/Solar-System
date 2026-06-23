@@ -1,0 +1,45 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Django
+db.sqlite3
+*.sqlite3
+
+# Migrations (optional - only if you want to reset DB safely)
+# your_app/migrations/*.py
+# !your_app/migrations/__init__.py
+
+# Environment variables
+.env
+.env.*
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Static files (if collected)
+staticfiles/
+
+# Media uploads (optional)
+media/
+
+# Django debug
+*.pot
+*.pyc

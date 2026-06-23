@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.contact-section{
+    background:linear-gradient(135deg,#f4fff8,#e8fff2);
+    min-height:100vh;
+    padding:80px 20px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:15px;
+    font-size:clamp(32px,5vw,50px);
+    color:#0a7d4f;
+    font-weight:700;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:60px;
+    font-size:18px;
+}
+
+.contact-wrapper{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    gap:40px;
+}
+
+/* FORM CARD */
+.form-card{
+    background:rgba(255,255,255,0.8);
+    backdrop-filter:blur(10px);
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.08);
+    transition:.4s;
+}
+
+.form-card:hover{
+    transform:translateY(-5px);
+}
+
+.form-title{
+    color:#0a7d4f;
+    margin-bottom:25px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+    color:#333;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    margin-bottom:18px;
+    font-size:15px;
+    transition:.3s;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+    border-color:#0a7d4f;
+    box-shadow:0 0 10px rgba(10,125,79,.15);
+    outline:none;
+}
+
+.btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#0a7d4f,#0cb76f);
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(10,125,79,.25);
+}
+
+/* INFO CARD */
+.info-card{
+    background:linear-gradient(135deg,#0a7d4f,#0cb76f);
+    color:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.1);
+}
+
+.info-item{
+    display:flex;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.icon{
+    font-size:28px;
+    min-width:40px;
+}
+
+/* SUCCESS MESSAGE */
+.msg{
+    padding:10px;
+    margin-bottom:15px;
+    border-radius:8px;
+    background:#e7fff0;
+    color:#0a7d4f;
+    font-weight:600;
+}
+</style>
+
+<section class="contact-section">
+
+<div class="container">
+
+    <h1 class="title">Contact Us</h1>
+    <p class="subtitle">
+        We'd love to hear from you. Send your inquiry and our team will contact you soon.
+    </p>
+
+    <!-- SUCCESS MESSAGE -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="msg">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="contact-wrapper">
+
+        <!-- FORM -->
+        <div class="form-card">
+
+            <h2 class="form-title">Send a Message</h2>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <label>Full Name</label>
+                <input type="text" name="name" required>
+
+                <label>Email</label>
+                <input type="email" name="email" required>
+
+                <label>Phone</label>
+                <input type="text" name="phone">
+
+                <label>City (Optional)</label>
+                <input type="text" name="city">
+
+                <label>Service Type (Optional)</label>
+                <select name="service_type">
+                    <option value="">-- Select Service --</option>
+                    <option value="home">Home Solar</option>
+                    <option value="business">Business Solar</option>
+                    <option value="industrial">Industrial Solar</option>
+                    <option value="lighting">Solar Lighting</option>
+                    <option value="maintenance">Maintenance</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <label>Message</label>
+                <textarea name="message" rows="6" required></textarea>
+
+                <button type="submit" class="btn">
+                    Send Message 🚀
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- INFO -->
+        <div class="info-card">
+
+            <h2>Get In Touch</h2>
+
+            <div class="info-item">
+                <div class="icon">📍</div>
+                <div>
+                    <h3>Address</h3>
+                    <p>Solar System Office, Maharashtra, India</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="icon">📞</div>
+                <div>
+                    <h3>Phone</h3>
+                    <p>+91 8459639095</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="icon">📧</div>
+                <div>
+                    <h3>Email</h3>
+                    <p>shubhammutkule1406@gmil.com</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="icon">⏰</div>
+                <div>
+                    <h3>Working Hours</h3>
+                    <p>Mon - Sat: 9:00 AM - 6:00 PM</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+{% endblock %}
